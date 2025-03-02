@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.theme-transition,
+.theme-transition * {
+    transition: background-color 0.5s, color 0.5s !important;
+}
