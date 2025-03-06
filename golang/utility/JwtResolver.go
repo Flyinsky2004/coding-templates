@@ -1,3 +1,7 @@
+/*
+ * @Author: Flyinsky w2084151024@gmail.com
+ * @Description: None
+ */
 package utility
 
 import (
@@ -16,7 +20,7 @@ import (
  */
 
 // 使用config中的密钥
-var secretKey = []byte(config.JwtSecretKey)
+var secretKey = []byte(config.Config.JWT.SecretKey)
 
 type CustomClaims struct {
 	UserID   int    `json:"user_id"`
@@ -31,7 +35,7 @@ func GenerateToken(userID int, username string) (string, error) {
 		Username: username,
 		RegisteredClaims: jwt.RegisteredClaims{
 			// 使用config中的过期时间
-			ExpiresAt: jwt.NewNumericDate(time.Now().Add(time.Duration(config.JwtExpireTime) * time.Hour)),
+			ExpiresAt: jwt.NewNumericDate(time.Now().Add(time.Duration(config.Config.JWT.ExpireTime) * time.Hour)),
 			IssuedAt:  jwt.NewNumericDate(time.Now()),
 		},
 	}

@@ -1,3 +1,7 @@
+/*
+ * @Author: Flyinsky w2084151024@gmail.com
+ * @Description: None
+ */
 package main
 
 import (
@@ -11,6 +15,7 @@ import (
 )
 
 func main() {
+	config.ReadConfig()
 	// 初始化mysql
 	config.InitMysqlDataBase()
 	// 初始化redis
@@ -19,7 +24,7 @@ func main() {
 	config.MysqlDataBase.AutoMigrate(&entity.User{})
 	app := gin.Default()
 	app.Use(cors.New(cors.Config{
-		AllowOrigins:     config.CorsAllowOrigins, // 允许的前端来源
+		AllowOrigins:     config.Config.Gin.CorsAllowOrigins, // 允许的前端来源
 		AllowMethods:     []string{"GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"},
 		AllowHeaders:     []string{"Origin", "Content-Type", "Accept", "Authorization", "x-requested-with"},
 		ExposeHeaders:    []string{"Content-Length"},
@@ -28,5 +33,5 @@ func main() {
 	}))
 	// app.Static("/api/uploads", "./uploads") 静态文件访问路径以及目录
 	route.RegisterRoutes(app)
-	app.Run(config.GinPort)
+	app.Run(config.Config.Gin.Port)
 }

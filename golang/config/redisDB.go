@@ -1,3 +1,7 @@
+/*
+ * @Author: Flyinsky w2084151024@gmail.com
+ * @Description: None
+ */
 package config
 
 import (
@@ -15,10 +19,10 @@ var RedisClient *redis.Client
 
 // InitRedis 初始化 Redis 连接
 func InitRedis() {
-	db, _ := strconv.Atoi(fmt.Sprintf("%v", RedisDatabase))
+	db, _ := strconv.Atoi(fmt.Sprintf("%v", Config.Redis.Database))
 	RedisClient = redis.NewClient(&redis.Options{
-		Addr:     fmt.Sprintf("%s:%s", RedisHost, RedisPort),
-		Password: RedisPassword,
+		Addr:     fmt.Sprintf("%s:%s", Config.Redis.Host, Config.Redis.Port),
+		Password: Config.Redis.Password,
 		DB:       db,
 	})
 

@@ -1,3 +1,7 @@
+/*
+ * @Author: Flyinsky w2084151024@gmail.com
+ * @Description: None
+ */
 package config
 
 import (
@@ -13,7 +17,7 @@ var MysqlDataBase *gorm.DB
 
 func InitMysqlDataBase() {
 	dbc := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",
-		MysqlUser, MysqlPassword, MysqlHost, MysqlPort, MysqlDatabase)
+		Config.MySQL.User, Config.MySQL.Password, Config.MySQL.Host, Config.MySQL.Port, Config.MySQL.Database)
 	db, err := gorm.Open(mysql.Open(dbc), &gorm.Config{})
 	if err != nil {
 		log.Fatalf("连接数据库时发生错误:%v", err)

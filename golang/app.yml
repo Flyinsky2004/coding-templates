@@ -1,0 +1,47 @@
+gin:
+  port: ":8089"
+  corsAllowOrigins:
+    - "http://localhost:5173"
+
+mysql:
+  host: "localhost"
+  port: "3306"
+  user: "root"
+  password: "root"
+  database: "testDB"
+
+redis:
+  host: "localhost"
+  port: "6379"
+  password: "root"
+  database: 0
+
+jwt:
+  secretKey: "5771DF8B-A018-4576-92E2-988E1AFF2909"
+  expireTime: 168  # 7 * 24 小时
+
+mail:
+  senderName: "Flyinsky"
+  smtpHost: "smtp.office365.com"
+  username: "test@test.onmicrosoft.com"
+  password: "password"
+  smtpPort: 587
+
+azureTTS:
+  baseURL: "https://%s.tts.speech.microsoft.com/cognitiveservices/v1"
+  ssmlTemplate: |
+    <speak version='1.0' xml:lang='%s'>
+        <voice xml:lang='%s' xml:gender='%s' name='%s'>
+            %s
+        </voice>
+    </speak>
+  subscriptionKey: "your-subscription-key"
+  region: "eastasia"
+
+openAI:
+  key: "sk-myOpenAiKey"
+  baseURL: "https://api.openai.com/v1"
+  globalTemperature: 0.5
+  thinkModelName: "deepseek-r1-250120"
+  agentModelName: "deepseek-r1-250120"
+  useModelName: "deepseek-v3-241226" 

@@ -31,10 +31,10 @@ type AzureTTS struct {
 func NewAzureTTS(subscriptionKey, region string) *AzureTTS {
 	// 如果未提供参数，则使用配置中的默认值
 	if subscriptionKey == "" {
-		subscriptionKey = config.AzureTTSSubscriptionKey
+		subscriptionKey = config.Config.AzureTTS.SubscriptionKey
 	}
 	if region == "" {
-		region = config.AzureTTSRegion
+		region = config.Config.AzureTTS.Region
 	}
 
 	return &AzureTTS{
@@ -113,10 +113,10 @@ func (tts *AzureTTS) TextToSpeech(text, lang, voice, gender string) (string, err
 // processChunk 处理单个文本块
 func (tts *AzureTTS) processChunk(text, lang, voice, gender, outputPath string) error {
 	// 构建SSML
-	ssml := fmt.Sprintf(config.AzureTTSSSMLTemplate, lang, lang, gender, voice, text)
+	ssml := fmt.Sprintf(config.Config.AzureTTS.SSMLTemplate, lang, lang, gender, voice, text)
 
 	// 创建请求
-	url := fmt.Sprintf(config.AzureTTSBaseURL, tts.Region)
+	url := fmt.Sprintf(config.Config.AzureTTS.BaseURL, tts.Region)
 	req, err := http.NewRequest("POST", url, bytes.NewBufferString(ssml))
 	if err != nil {
 		return fmt.Errorf("创建请求失败: %v", err)

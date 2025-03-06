@@ -79,8 +79,8 @@ type Dalle3MetaResponse struct {
 // GenerateImage 使用 DALL-E 3 API 生成图像
 func GenerateImage(prompt string) (string, error) {
 	// 使用配置中的基础URL和API密钥
-	baseURL := config.OpenAIBaseURL
-	apiKey := config.OpenAIKey
+	baseURL := config.Config.OpenAI.BaseURL
+	apiKey := config.Config.OpenAI.Key
 
 	// 构造请求体
 	requestBody := Dalle3Request{
@@ -192,11 +192,11 @@ type Client struct {
 // NewClient 创建一个新的客户端
 func NewClient(apiKey string) *Client {
 	openaiConfig := openai.DefaultConfig(apiKey)
-	openaiConfig.BaseURL = config.OpenAIBaseURL
+	openaiConfig.BaseURL = config.Config.OpenAI.BaseURL
 
 	return &Client{
 		client:  openai.NewClientWithConfig(openaiConfig),
-		baseURL: config.OpenAIBaseURL,
+		baseURL: config.Config.OpenAI.BaseURL,
 	}
 }
 
@@ -252,7 +252,7 @@ func (c *Client) SendMessage(messages []Message, model string, maxToken int, tem
 
 // ChatHandler 保持原有函数签名和行为不变
 func ChatHandler(request ChatRequest) (ChatMetaResponse, error) {
-	client := NewClient(config.OpenAIKey)
+	client := NewClient(config.Config.OpenAI.Key)
 
 	systemMessage := []Message{
 		{
@@ -283,8 +283,8 @@ func ChatHandler(request ChatRequest) (ChatMetaResponse, error) {
 // StreamChatCompletion 创建流式聊天完成
 func StreamChatCompletion(ctx context.Context, request ChatRequest) (<-chan StreamResponse, error) {
 	// 创建配置
-	openaiConfig := openai.DefaultConfig(config.OpenAIKey)
-	openaiConfig.BaseURL = config.OpenAIBaseURL
+	openaiConfig := openai.DefaultConfig(config.Config.OpenAI.Key)
+	openaiConfig.BaseURL = config.Config.OpenAI.BaseURL
 
 	// 使用配置创建客户端
 	client := openai.NewClientWithConfig(openaiConfig)
