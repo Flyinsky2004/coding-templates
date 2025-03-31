@@ -1,0 +1,40 @@
+{
+    "window.commandCenter": true,
+    "workbench.activityBar.orientation": "vertical",
+    "editor.fontSize": 15,
+    "editor.fontFamily": "'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+    "[vue]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "git.openRepositoryInParentFolders": "never",
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "go.toolsManagement.autoUpdate": true,
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "java.configuration.detectJdksAtStart": false,
+    "java.configuration.runtimes": [
+        {
+            "name":"JavaSE-17",
+            "path": "/Users/wangjiying/Documents/Enviroment/zulu17/"
+        },{
+            "name":"JavaSE-1.8",
+            "path": "/Users/wangjiying/Documents/Enviroment/zulu8/"
+        }
+    ],
+    "maven.executable.path": "/Users/wangjiying/Documents/Enviroment/maven/apache-maven-3.9.8/bin/mvn",
+    "fileheader.customMade": {
+        "Author": "Flyinsky w2084151024@gmail.com",
+        "Description": "None"
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "diffEditor.ignoreTrimWhitespace": false,
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "git.suggestSmartCommit": false,
+    "java.configuration.maven.userSettings": "/Users/wangjiying/Documents/Enviroment/maven/apache-maven-3.9.8/conf/settings.xml",
+    "java.configuration.maven.globalSettings": "/Users/wangjiying/Documents/Enviroment/maven/apache-maven-3.9.8/conf/settings.xml"
+}
