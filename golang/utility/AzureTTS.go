@@ -19,6 +19,7 @@ const (
         %s
     </voice>
 </speak>`
+	basePath = "/Users/wangjiying/Documents/recording/legacy/audio"
 )
 
 type AzureTTS struct {
@@ -57,10 +58,10 @@ func (tts *AzureTTS) TextToSpeech(text, lang, voice, gender string) (string, err
 	}
 	timestamp := time.Now().Format("20060102")
 	filename := fmt.Sprintf("%s_%s.mp3", timestamp, randomString())
-	outputPath := fmt.Sprintf("./audio/%s", filename)
+	outputPath := fmt.Sprintf(basePath+"/%s", filename)
 
 	// 确保目录存在
-	if err := os.MkdirAll("./audio", os.ModePerm); err != nil {
+	if err := os.MkdirAll(basePath, os.ModePerm); err != nil {
 		return "", fmt.Errorf("创建目录失败: %v", err)
 	}
 
@@ -69,7 +70,7 @@ func (tts *AzureTTS) TextToSpeech(text, lang, voice, gender string) (string, err
 	textRunes := []rune(text)
 	if len(textRunes) > maxLength {
 		// 创建临时目录
-		tempDir := "./audio/temp"
+		tempDir := basePath + "/temp"
 		if err := os.MkdirAll(tempDir, os.ModePerm); err != nil {
 			return "", fmt.Errorf("创建临时目录失败: %v", err)
 		}
